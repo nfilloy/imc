@@ -10,7 +10,7 @@
             text-align: center;
             margin-top: 50px;
         }
-        .resultado, .info {
+        .resultado, .info, .pesoIdeal {
             margin-top: 20px;
         }
         .info {
@@ -35,10 +35,11 @@
     <button onclick="calcularIMC()">Calcular</button>
 
     <div class="info">
-        <strong><span>Desarrolado por Nicolás Filloy Montesino correo de contacto: nicofm2004@gmail.com</span></strong>
+        <strong><span>Desarrolado por Nicolás Filloy Montesino, correo de contacto: nicofm2004@gmail.com</span></strong>
     </div>
 
     <div class="resultado" id="resultado"></div>
+    <div class="pesoIdeal" id="pesoIdeal"></div> <!-- Nuevo div para el mensaje del peso ideal -->
 
     <script>
         function calcularIMC() {
@@ -58,15 +59,18 @@
                 mensaje += " Obesidad";
             }
 
+            document.getElementById("resultado").innerText = mensaje;
+
+            // Mensaje para el peso ideal en caso de obesidad
             if (resultado >= 30.0) {
                 var pesoBueno = 29.9 * (altura * altura);
-                mensaje += " Para tener un IMC menor que 30, tu peso tendría que ser como mucho: " + pesoBueno.toFixed(4) + " kg";
+                var mensajePesoIdeal = "Para tener un IMC menor que 30, tu peso tendría que ser como mucho: " + pesoBueno.toFixed(4) + " kg";
+                document.getElementById("pesoIdeal").innerText = mensajePesoIdeal;
+            } else {
+                document.getElementById("pesoIdeal").innerText = ''; // Limpiar el mensaje de peso ideal si no es necesario
             }
-
-            document.getElementById("resultado").innerText = mensaje;
         }
     </script>
 
 </body>
 </html>
-
