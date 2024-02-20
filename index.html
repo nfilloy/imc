@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Programa para calcular el IMC de un paciente</h1>
+    <p>Si vas a usar decimales, usa el punto (.)</p>
+
+    <label for="altura">Introduce la altura en metros:</label>
+    <input type="number" id="altura" step="0.01" required>
+    <br><br>
+    <label for="peso">Introduce el peso en kilos:</label>
+    <input type="number" id="peso" step="0.01" required>
+    <br><br>
+    <button onclick="calcularIMC()">Calcular IMC</button>
+
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        function calcularIMC() {
+            var altura = document.getElementById("altura").value;
+            var peso = document.getElementById("peso").value;
+            var resultado = peso / (altura * altura);
+
+            var mensaje = "\nEl IMC es: " + resultado.toFixed(4) + "\n";
+
+            if (resultado < 18.5) {
+                mensaje += "Bajo peso";
+            } else if (resultado < 24.9) {
+                mensaje += "Adecuado";
+            } else if (resultado < 29.9) {
+                mensaje += "Sobrepeso";
+            } else {
+                mensaje += "Obesidad";
+            }
+
+            if (resultado >= 30.0) {
+                var pesoBueno = 29.9 * (altura * altura);
+                mensaje += "\nPara tener un IMC menor que 30, tu peso tendría que ser como mucho: " + pesoBueno.toFixed(4) + " kg";
+            }
+
+            document.getElementById("resultado").innerText = mensaje;
+        }
+    </script>
+
+</body>
+</html>
